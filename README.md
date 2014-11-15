@@ -3,7 +3,7 @@ Beamyfile
 
 Repository for project in Design of Dynamic Web Systems - M7011E at lulea university
 
-
+<pre>
 Homepage for uploading files (IDEA AND "TODO")
   User login
     Able to chat with other logged in users upon request (group or "1v1").
@@ -30,3 +30,4 @@ Homepage for uploading files (IDEA AND "TODO")
     During developement Nitrous.JS(Framework for windows developement against Meteor) will be used for collaborative coding and faster testing.
     Github repo for code.
     Simple project homepage on google sites, updated with project status and information.
+</pre>
