@@ -1,0 +1,299 @@
+
+
+<template name="Home">
+  
+    <h1>
+      Public images
+    </h1>
+    {{>images_public}}    
+
+</template>
+
+
+<template name="logoutForm">
+  <form id="logout-form">
+    <button type="submit" class="btn btn-danger">Log Out!</button>
+  </form>
+</template>
+
+
+<template name = 'Profile'>
+    {{#if currentUser}}
+    {{subscribePictures}}
+  <!--<div class="container-fluid" style="padding-top: 150px">-->
+    <div class="col-xs-12" id="usrinfo">
+        <div class="media">
+            <a class="pull-left" href="https://plus.google.com/{{currentUser.services.google.id}}/posts">
+                <img class="media-object dp img-circle" src="{{currentUser.services.google.picture}}" style="width: 100px;height:100px;">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">{{currentUser.services.google.given_name}} {{currentUser.services.google.family_name}} <small> Country </small> <small class="text-uppercase" id="small">{{currentUser.services.google.locale}}</small></h4>
+                <h5><i class="glyphicon glyphicon-envelope"></i> {{currentUser.services.google.email}}</h5>
+               {{> logoutForm}}
+
+             
+            </div>
+        </div>
+      <hr>
+      
+      <!--
+ {{#each images}}
+      <li> Uploader : {{Uploader}}  </li>
+      <li> Filename : {{Name}}  </li>
+      <li>Filesrc : {{Src}}</li>
+      <li> <img src="{{Src}}" height="150" width="150"> </li>
+{{/each}}
+{{homePagePictures}}
+      -->
+      
+      <div class="col-xs-12" id="usrinfo">
+        
+
+        <div class='list-group gallery' style="width:inherit">    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+          <div class="slides"></div>
+          <h3 class="title"></h3>
+          <a class="prev">‹</a>
+          <a class="next">›</a>
+          <a class="close">×</a>
+          <a class="play-pause"></a>
+          <ol class="indicator"></ol>
+          </div>
+
+
+
+          <div id="links">
+            {{#each images}}
+            <div class="col-xs-3" style="vertical-align: middle; margin-top: 10px; margin-bottom: 10px;">
+            <a href="{{Src}}" title="{{Name}}" data-gallery>
+              <img src="http://beamyfile-165991.euw1-2.nitrousbox.com/upload/images/thumbnailSmall/{{Name}}" style="height:110px;width:150px;" alt="">
+            </a>
+              
+             <!-- <textarea class="form-control" rows="2" style="resize: none; width:79.5%;overflow:hidden">{{Src}}</textarea> -->
+              
+              <a href="{{Src}}" class="btn btn-info" target="_blank" >To image <i>(new tab)</i></a>
+              
+              
+            
+            <div class="btn-group" data-toggle="buttons" style="width: 115%">
+              {{#if IsPrivate}}
+
+              <label class="btn btn-success active" style="width: 60%">
+                <input type="radio" name="privacy_options" value="private" id="private_btn" > Private
+              </label>
+              <label class="btn btn-danger" style="width: 40%">
+                <input type="radio" name="privacy_options" value="public" id="public_btn" > Public
+              </label>
+              {{else}}
+              <label class="btn btn-danger" style="width: 40%">
+                <input type="radio" name="privacy_options" value="private" id="private_btn"> Private
+              </label>
+              <label class="btn btn-success active" style="width: 60%">
+                <input type="radio" name="privacy_options" value="public" id="public_btn"> Public
+              </label>
+
+              
+             
+              {{/if}}
+              <input type="button" class="btn btn-warning" id="deletepic" value="Delete" style="width: 100%;margin-top:5px"/>
+            </div>
+               
+            </div>
+            
+              
+          {{/each}}
+        </div>
+
+      </div>
+  </div>
+      
+      
+      
+      
+      <!--
+      {{#if IsPrivate}}
+        <div id="yourbutton">STATE 1</div>
+      {{else}}
+        <div id="yourbutton">STATE 0</div>
+      {{/if}}
+      -->
+      
+      
+      
+   
+      
+      
+    <hr>
+    
+    </div>
+   
+  <!--</div>-->
+  
+    {{else}}
+  <div align="center">
+  <h2>Sign in below!</h2>
+       {{> loginButtons}}
+  </div>
+    {{/if}}
+</template>
+
+<template name = 'Contact'>
+  <h2 align="left">Do you wanna talk to me, come and find me</h2>
+</template>
+
+
+
+<template name="hasVoted">
+   <p class="btn btn-default" style="width:114%" disabled="disabled"> <span class="glyphicon glyphicon-arrow-up"></span>{{Upvotes}} <span class="glyphicon glyphicon-arrow-down"></span>{{Downvotes}} </p>
+</template>
+
+<template name="hasNotVoted">
+  <div style="width:114%">
+  <button class="btn btn-success" id="voteUp" style="width: 48%;margin-top:5px">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        </button>
+        
+         <button class="btn btn-danger" id="voteDown" style="width: 48%;margin-top:5px">
+          <span class="glyphicon glyphicon-arrow-down"></span>
+        </button>
+    </div>
+</template>
+
+
+
+
+
+
+<template name = "images_public"> 
+  <div class="col-xs-12" id="usrinfo">
+  {{homePagePictures}}
+    
+    
+    
+    
+    <div>
+    <div class="btn-group">
+  
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    Sort <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><button class="btn btn-default" id="byUpvotes">
+    By Upvotes
+  </button></li>
+    <li><button class="btn btn-default" id="byDownvotes">
+      By Downvotes
+  </button></li>
+    <li><button class="btn btn-default" id="byDateNew">
+        By Date <small>(by newest first)</small>
+  </button></li>
+    <li><button class="btn btn-default" id="byDateOld">
+        By Date <small>(by oldest first)</small>
+  </button></li>
+  </ul>
+</div>
+    </div>
+  
+  <div class='list-group gallery'>
+<!-- ... 
+    <div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+-->
+    
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+    
+    
+    
+    <!--<div id="links">-->
+    
+    
+    {{#each pubImages}}
+    
+
+        
+      
+      <div class="col-xs-3" style="vertical-align: middle; margin-top: 10px; margin-bottom: 10px;">
+      <a href="{{Src}}" title="{{Name}}" data-gallery>
+        <img src="http://beamyfile-165991.euw1-2.nitrousbox.com/upload/images/thumbnailSmall/{{Name}}" style="height:110px;width:150px">
+      </a>
+        
+       
+        {{#if currentUser}}
+       
+        {{#if whichButtons}}
+        {{>hasVoted}}
+        {{else}}
+        {{>hasVoted}}
+        {{#if currentUser}}
+        {{>hasNotVoted}}
+        {{/if}}
+        {{/if}}
+        
+         {{else}}
+       {{>hasVoted}}
+        
+        {{/if}}
+         
+      </div>
+        
+                <!--<a href="example.jpg" class="fancybox"> test </a>
+                <a href="{{Src}}" class="fancybox" title="aids"><img src="{{Src}}" /></a>-->
+                <!--<a class="thumbnail fancybox" rel="ligthbox" href="{{Src}}">
+                  
+                    <img class="img-responsive" alt="" src="{{Src}}" />
+                    <div class='text-right'>
+                        <small class='text-muted'>{{Name}}</small>
+                    </div> --><!-- text-right / end 
+                </a>-->
+  
+    {{/each}}
+
+</div>
+
+  </div>
+  <!--</div>-->
+  
+<!--  
+    <ul class="list-group" style="float: left; text-align: center; margin-right: 5px">
+            <a href="{{Src}}" class="list-group-item active">
+              <img src="{{Src}}" style="width:100px;">
+            </a>
+            <li class="list-group-item">Uploader: {{ Uploader }}<br>
+            </li>
+    </ul>
+
+    <ul>
+      <li> Uploader : {{Uploader}}  </li>
+      <li> Filename : {{Name}}  </li>
+      <li> <img src="{{Src}}" height="150" width="150"> </li>
+      </ul>
+-->
+  
+</template>
+
+
+

@@ -1,0 +1,96 @@
+
+
+<template name="layoutStart">
+      {{>head}}
+
+        <div class="site-wrapper">
+          <div class="site-wrapper-inner">
+            <div class="cover-container">
+
+          {{>nav}}
+          
+          {{>content}}
+
+          {{>footer}}
+              
+          {{>scripts}}
+              
+          {{>stuff}}
+
+            </div>
+          </div>
+        </div>
+
+  </template>
+
+<template name ="content">
+  
+          <div class="inner cover">
+            <!--<p class="lead"></p>-->
+            {{>yield}}
+          </div>
+  
+</template>
+
+
+
+<template name = "nav">
+          <!-- style="position: relative"-->
+          <div class="masthead clearfix" style="position: relative">
+            <div class="inner">
+              <h3 class="masthead-brand">BeamyFile</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  {{>navBrand}}
+                  {{>navItems}}
+                </ul>
+              </nav>
+            </div>
+          </div>
+  
+ 
+</template>
+
+
+<template name ="navBrand">
+  
+  
+  
+</template>
+
+<template name ="navItems">
+  <li class="{{activeIfTemplateIs 'Home'}}"><a href="{{ pathFor 'home'}}">Home</a></li>
+  <li class="{{activeIfTemplateIs 'Profile'}}"><a href="{{ pathFor 'profile'}}">Profile</a></li>
+  <!--<li class="{{activeIfTemplateIs 'Contact'}}"><a href="{{ pathFor 'contact'}}">Contact</a></li>-->
+   {{#if currentUser}}
+  <li class="{{activeIfTemplateIs 'ImageUpload'}}"><a href="{{ pathFor 'imageUpload'}}">Image Upload</a></li>
+  {{/if}}
+</template>
+
+
+<template name = "footer">
+  
+          <!--<div class="mastfoot">
+            <div class="inner">
+              <p>Cover template for <a href="http://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            </div>
+          </div>-->
+  
+</template>
+
+<template name = "scripts">
+  
+  <script src="./Cover Template for Bootstrap_files/jquery.min.js"></script>
+    <script src="./Cover Template for Bootstrap_files/bootstrap.min.js"></script>
+    <script src="./Cover Template for Bootstrap_files/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./Cover Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
+  
+</template>
+
+<template name = "stuff">
+  
+  
+<div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container" style="position: absolute; left: 0px; top: -9999px; width: 15px; height: 15px; z-index: 999999999;" title="" data-original-title="Copy to clipboard">      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="global-zeroclipboard-flash-bridge" width="100%" height="100%">         <param name="movie" value="/assets/flash/ZeroClipboard.swf?noCache=1416571192629">         <param name="allowScriptAccess" value="sameDomain">         <param name="scale" value="exactfit">         <param name="loop" value="false">         <param name="menu" value="false">         <param name="quality" value="best">         <param name="bgcolor" value="#ffffff">         <param name="wmode" value="transparent">         <param name="flashvars" value="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com">         <embed src="/assets/flash/ZeroClipboard.swf?noCache=1416571192629" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="100%" height="100%" name="global-zeroclipboard-flash-bridge" allowscriptaccess="sameDomain" allowfullscreen="false" type="application/x-shockwave-flash" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com" scale="exactfit">                </object></div>
+  
+</template>

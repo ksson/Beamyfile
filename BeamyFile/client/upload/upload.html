@@ -1,0 +1,86 @@
+
+<template name="imageServe">
+  
+  {{#each this}}
+        <ul class="list-group" style="float: left; text-align: center; margin-right: 5px">
+            <a href="{{url}}" class="list-group-item active">
+              <img src="{{url}}" style="width:100px;">
+            </a>
+            <li class="list-group-item">{{ name }}<br>
+            {{ size }} B</li>
+        </ul>
+    {{/each}}
+  
+</template>
+
+
+<template name="imageUpload">
+  
+  <!--
+  <div id="dropzone" class="dropzone">
+  <div style="text-align: center; color: gray;">Drop file to upload</div>
+  </div>
+  -->
+  {{> upload_v3}}
+  
+ <!-- {{> dropzone url='/file-upload' id='dropzone'}}
+  <form action="/file-upload" class="dropzone dz-clickable dz-started" id="dropzone"></form>
+ -->
+
+</template>
+
+
+
+<template name="upload_v2">
+  
+  <h3>Images</h3>
+  
+          
+              {{> upload_bootstrap contentType='files' multiple=true }}
+           
+  
+</template>
+
+
+<template name="upload_v3">
+        
+        {{> upload_bootstrap contentType='images' fileTypes='' startOnClick=true drop="true"}}
+              
+        {{#if filesUploaded}}
+      
+        <h3>Uploaded Following Files</h3>
+        <p>
+            {{> uploadedInfo filesUploaded}}
+        </p>
+        {{/if}}
+
+</template>
+
+
+
+ 
+
+<template name="uploadInfo">
+    <b>Upload Info</b><br>
+    {{#each this}}
+        <ul>
+            <li>Name: {{ name }}</li>
+            <li>Size: {{ size }} B</li>
+            <li>Type: {{ type }}</li>
+            <li>Url: {{ url }}</li>
+            <li>Src: {{ src }}</li>
+        </ul>
+    {{/each}}
+</template>
+
+<template name="uploadedInfo">
+    {{#each this}}
+        <ul class="list-group" style="float: left; text-align: center; margin-right: 5px">
+            <a href="{{url}}" class="list-group-item active">
+              <img src="{{url}}" style="width:100px;">
+            </a>
+            <li class="list-group-item">{{ name }}<br>
+            {{ size }} B</li>
+        </ul>
+    {{/each}}
+</template>

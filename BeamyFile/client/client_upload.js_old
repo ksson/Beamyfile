@@ -1,0 +1,39 @@
+/*  Template.imageUpload.rendered = function(){
+  if (Meteor.isClient){
+    
+    Meteor.subscribe("images");
+
+    
+    console.log("Starting file upload");
+    
+    var arrayOfImageIds = [];
+
+    Dropzone.autoDiscover = false;
+
+    // Adds file uploading and adds the imageID of the file uploaded
+    // to the arrayOfImageIds object.
+
+    var dropzone = new Dropzone("form#dropzone", {
+        accept: function(file, done){
+          console.log("eyy what is the file," + file);
+            images.insert(file, function(err, fileObj){
+                if(err){
+                  console.log("The file are not going to be uploaded: "+ err);
+                  //alert("Error");
+                } else {
+                  // gets the ID of the image that was uploaded
+                  var imageId = fileObj._id;
+                  // do something with this image ID, like save it somewhere
+                  arrayOfImageIds.push(imageId);
+                }
+            });
+        }
+    });
+  }
+
+};
+*/
+
+ 
+
+
